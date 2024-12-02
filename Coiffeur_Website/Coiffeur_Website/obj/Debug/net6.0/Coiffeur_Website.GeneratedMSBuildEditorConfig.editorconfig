@@ -24,6 +24,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Proje/Web/Coiffeur_Website/Coiffeur_Website/Views/Kullanici/Anasayfa.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS3VsbGFuaWNpXEFuYXNheWZhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Proje/Web/Coiffeur_Website/Coiffeur_Website/Views/Kullanici/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS3VsbGFuaWNpXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Proje/Web/Coiffeur_Website/Coiffeur_Website/Views/Kullanici/KullaniciIcerik.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS3VsbGFuaWNpXEt1bGxhbmljaUljZXJpay5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Proje/Web/Coiffeur_Website/Coiffeur_Website/Views/Kullanici/KullaniciSesGet.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS3VsbGFuaWNpXEt1bGxhbmljaVNlc0dldC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Proje/Web/Coiffeur_Website/Coiffeur_Website/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

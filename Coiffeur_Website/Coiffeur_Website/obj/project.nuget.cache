@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "yPryFFhw12thGM+nXmdIOnhNaNxKk4uwZ/FrBVEqIDRTdUzEUnC5u6nENukmKBvBCtvy1rRjFK3X1VsZIYLDSA==",
+  "dgSpecHash": "h4RUNMzhiEsD9JaTloHT3ROTDVWIhZHuWj3nurX1koiXa0isIKB8nsP+WkJxUfcwLpRZ+Mm0lvIM9A48cBlc6Q==",
   "success": true,
   "projectFilePath": "D:\\Proje\\Web\\Coiffeur_Website\\Coiffeur_Website\\Coiffeur_Website.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Ayse\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

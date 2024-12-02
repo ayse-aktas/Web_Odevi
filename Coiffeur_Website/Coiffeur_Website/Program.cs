@@ -8,6 +8,12 @@ namespace Coiffeur_Website
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddSession(
+            opt =>
+            {
+                opt.IdleTimeout = TimeSpan.FromMinutes(5);
+            }
+            );
 
             var app = builder.Build();
 
@@ -21,7 +27,7 @@ namespace Coiffeur_Website
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();

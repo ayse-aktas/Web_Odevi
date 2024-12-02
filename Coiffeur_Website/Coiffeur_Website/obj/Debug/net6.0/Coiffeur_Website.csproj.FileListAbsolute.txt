@@ -28,3 +28,6 @@ D:\Proje\Web\Coiffeur_Website\Coiffeur_Website\obj\Debug\net6.0\refint\Coiffeur_
 D:\Proje\Web\Coiffeur_Website\Coiffeur_Website\obj\Debug\net6.0\Coiffeur_Website.pdb
 D:\Proje\Web\Coiffeur_Website\Coiffeur_Website\obj\Debug\net6.0\Coiffeur_Website.genruntimeconfig.cache
 D:\Proje\Web\Coiffeur_Website\Coiffeur_Website\obj\Debug\net6.0\ref\Coiffeur_Website.dll
+D:\Proje\Web\Coiffeur_Website\Coiffeur_Website\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\Proje\Web\Coiffeur_Website\Coiffeur_Website\obj\Debug\net6.0\Coiffeur_Website.csproj.AssemblyReference.cache
+D:\Proje\Web\Coiffeur_Website\Coiffeur_Website\obj\Debug\net6.0\Coiffeur_Website.csproj.CopyComplete
