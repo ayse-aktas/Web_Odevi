@@ -1,10 +1,82 @@
 ﻿@{
-    var Skullanici = Context.Session.GetString("SesKullanici");
-    var Sobj=  Context.Session.GetString("SesObj");
+    ViewData["Title"] = "Kullanıcı İçerik";
 }
-<div class="alert-danger">@TempData["msj"]</div>
-<h4>Buraya sadece Login olanlar girebilir</h4>
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
-<div>Session Datası : @Skullanici</div>
-<br />
-<div>Session Obje Datası : @Sobj</div>
+<h2>Hoşgeldiniz, @HttpContextAccessor.HttpContext.Session.GetString("SesKullanici")!</h2>
+
+@if (TempData["msj"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["msj"]
+    </div>
+}
+
+<div class="container mt-4">
+    <!-- İşlem Seçimi Bölümü -->
+    <div class="row">
+        <div class="col-md-6">
+            <h3>İşlem Seçimi</h3>
+            <p>Yapmak istediğiniz işlemi seçin:</p>
+            <ul>
+                <li><a href="@Url.Action("IslemSecim", "Randevu", new { islemId = 1 })">Saç Kesimi</a></li>
+                <li><a href="@Url.Action("IslemSecim", "Randevu", new { islemId = 2 })">Saç Boyama</a></li>
+                <li><a href="@Url.Action("IslemSecim", "Randevu", new { islemId = 3 })">Bakım Hizmetleri</a></li>
+                <li><a href="@Url.Action("IslemSecim", "Randevu", new { islemId = 4 })">Özel Gün Saç Tasarımı</a></li>
+            </ul>
+        </div>
+
+        <!-- Yorumlar Bölümü -->
+        <div class="col-md-6">
+            <h3>Önceki Kullanıcıların Yorumları</h3>
+            <div class="border p-3">
+                @if (ViewData["Yorumlar"] != null)
+                {
+                    var yorumlar = (List<string>)ViewData["Yorumlar"];
+                    foreach (var yorum in yorumlar)
+                    {
+                        <div class="mb-3">
+                            <blockquote>@yorum</blockquote>
+                            <hr />
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>Henüz hiç yorum yapılmamış.</p>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Fiyat Listesi Bölümü -->
+    <div class="mt-4">
+        <h3>Fiyat Listesi</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Hizmet</th>
+                    <th>Fiyat (₺)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Saç Kesimi</td>
+                    <td>150</td>
+                </tr>
+                <tr>
+                    <td>Saç Boyama</td>
+                    <td>250</td>
+                </tr>
+                <tr>
+                    <td>Keratin Bakımı</td>
+                    <td>400</td>
+                </tr>
+                <tr>
+                    <td>Özel Gün Saç Tasarımı</td>
+                    <td>600</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

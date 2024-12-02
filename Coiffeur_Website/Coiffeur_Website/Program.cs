@@ -15,6 +15,7 @@ namespace Coiffeur_Website
             }
             );
 
+            builder.Services.AddHttpContextAccessor();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

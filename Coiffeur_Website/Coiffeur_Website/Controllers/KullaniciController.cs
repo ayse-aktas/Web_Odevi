@@ -9,8 +9,8 @@ namespace Coiffeur_Website.Controllers
         static List<Kullanici> Kullanicilar = new List<Kullanici>()
         {
             //id ad soyad  kullanici adi tel
-            new Kullanici{Id=1,Ad="Ayşe",Soyad="Aktaş",TelNo="555 555 5245",Sifre="123"},
-            new Kullanici{Id=1,Ad="Büşra",Soyad="Sevinç",TelNo="555 555 5245",Sifre="234"}
+            new Kullanici{Id=1,Ad="Ayşe",Soyad="Aktaş",TelNo="+905555555245",Sifre="123"},
+            new Kullanici{Id=1,Ad="Büşra",Soyad="Sevinç",TelNo="+905555555245",Sifre="234"}
         };
         public IActionResult Index()
         {
@@ -79,7 +79,43 @@ namespace Coiffeur_Website.Controllers
                 TempData["msj"] = "Lütfen önce Login olun";
                 return RedirectToAction("Index");
             }
+
+            ViewData["Yorumlar"] = new List<string>
+            {
+                "Hizmet çok hızlı ve profesyoneldi!",
+                "Çalışanlar güler yüzlü, kesinlikle tavsiye ederim.",
+                "Fiyatlar uygun ve kaliteli bir salon."
+            };
             return View();
         }
+
+
+
+        //Kullanıcı kayıt yapabiliyor ancak veri tabanı bağlantısı henüz olmadığı için tekrar çalıştırılınca o kullanıcı siliniyor.
+        public IActionResult KullaniciKayit()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult KullaniciKayit(Kullanici yeniKullanici)
+        {
+            if (ModelState.IsValid)
+            {
+                // ID'nin eşsiz olması için liste kontrolü
+                if (Kullanicilar.Any(k => k.TelNo == yeniKullanici.TelNo))
+                {
+                    TempData["msj"] = "Bu telefon numarası zaten kayıtlı!";
+                    return View();
+                }
+
+                yeniKullanici.Id = Kullanicilar.Count > 0 ? Kullanicilar.Max(k => k.Id) + 1 : 1;
+                Kullanicilar.Add(yeniKullanici);
+                TempData["msj"] = "Kullanıcı başarıyla kaydedildi!";
+                return RedirectToAction("Index");
+            }
+            TempData["msj"] = "Lütfen tüm alanları doğru şekilde doldurun.";
+            return View();
+        }
+        //-------------------------------------------------------------------------------------------
     }
 }

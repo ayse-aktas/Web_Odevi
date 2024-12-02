@@ -3,7 +3,7 @@
     public class Islem
     {
         public int Id { get; set; }
-        public string IslemAdi { get; set; }
+        public string Ad { get; set; }
         public int Sure { get; set; }  // Dakika cinsinden işlem süresi
         public decimal Ucret { get; set; }  // İşlem ücreti
         public int SalonId { get; set; }  // İlişkili salon

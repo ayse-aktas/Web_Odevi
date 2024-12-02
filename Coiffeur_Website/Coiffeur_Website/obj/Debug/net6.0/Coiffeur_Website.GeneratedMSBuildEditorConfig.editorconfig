@@ -36,8 +36,28 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS3VsbGFuaWNpXEt1bGxhbmljaUljZXJpay5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Proje/Web/Coiffeur_Website/Coiffeur_Website/Views/Kullanici/KullaniciKayit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS3VsbGFuaWNpXEt1bGxhbmljaUtheWl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Proje/Web/Coiffeur_Website/Coiffeur_Website/Views/Kullanici/KullaniciSesGet.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS3VsbGFuaWNpXEt1bGxhbmljaVNlc0dldC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Proje/Web/Coiffeur_Website/Coiffeur_Website/Views/Randevu/CalisanSec.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmFuZGV2dVxDYWxpc2FuU2VjLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Proje/Web/Coiffeur_Website/Coiffeur_Website/Views/Randevu/IslemSecim.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmFuZGV2dVxJc2xlbVNlY2ltLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Proje/Web/Coiffeur_Website/Coiffeur_Website/Views/Randevu/RandevuOlustur.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmFuZGV2dVxSYW5kZXZ1T2x1c3R1ci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Proje/Web/Coiffeur_Website/Coiffeur_Website/Views/Randevu/SaatSec.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmFuZGV2dVxTYWF0U2VjLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Proje/Web/Coiffeur_Website/Coiffeur_Website/Views/Shared/Error.cshtml]

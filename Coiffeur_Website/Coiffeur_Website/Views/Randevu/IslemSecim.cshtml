@@ -1,0 +1,21 @@
+﻿@model List<Islem>
+
+@{
+    ViewData["Title"] = "İşlem Seçimi";
+}
+
+<h2>İşlem Seçimi</h2>
+<p>Lütfen yapmak istediğiniz işlemi seçiniz:</p>
+
+<ul class="list-group">
+    @foreach (var islem in Model)
+    {
+        <li class="list-group-item">
+            @islem.Ad
+            <form asp-action="CalisanSec" method="post" class="d-inline">
+                <input type="hidden" name="islemId" value="@islem.Id" />
+                <button type="submit" class="btn btn-primary btn-sm">Seç</button>
+            </form>
+        </li>
+    }
+</ul>
