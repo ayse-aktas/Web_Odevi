@@ -1,0 +1,42 @@
+﻿@model Coiffeur_Website.Models.Admin
+
+<div class="alert-danger">
+    @if (TempData["msj"] != null)
+    {
+        <p>@TempData["msj"]</p>
+    }
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h3>Admin Girişi</h3>
+        <form asp-action="AdminLogin" asp-controller="Admin" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="KullaniciAdi" class="control-label"></label>
+                <input asp-for="KullaniciAdi" class="form-control" />
+                <span asp-validation-for="KullaniciAdi" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Sifre" class="control-label"></label>
+                <input asp-for="Sifre" class="form-control" type="password" />
+                <span asp-validation-for="Sifre" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Admin Giriş" class="btn btn-danger" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts
+    {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

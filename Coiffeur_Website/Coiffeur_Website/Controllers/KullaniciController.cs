@@ -10,7 +10,9 @@ namespace Coiffeur_Website.Controllers
         {
             //id ad soyad  kullanici adi tel
             new Kullanici{Id=1,Ad="Ayşe",Soyad="Aktaş",TelNo="+905555555245",Sifre="123"},
-            new Kullanici{Id=1,Ad="Büşra",Soyad="Sevinç",TelNo="+905555555245",Sifre="234"}
+            new Kullanici{Id=2,Ad="Büşra",Soyad="Sevinç",TelNo="+905555555215",Sifre="234"},
+            new Kullanici{Id=3,Ad="Aslıhan",Soyad="Yıldırım",TelNo="+905555555247",Sifre="234"},
+            new Kullanici{Id=4,Ad="Elif",Soyad="Toprak",TelNo="+905555575245",Sifre="234"}
         };
         public IActionResult Index()
         {

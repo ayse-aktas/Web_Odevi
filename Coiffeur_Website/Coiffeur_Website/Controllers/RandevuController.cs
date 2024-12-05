@@ -24,15 +24,34 @@ public class RandevuController : Controller
             {
                 new CalisanSaat { Id = 3, BaslangicSaati = new TimeSpan(9, 0, 0), BitisSaati = new TimeSpan(10, 0, 0), Doluluk = false },
                 new CalisanSaat { Id = 4, BaslangicSaati = new TimeSpan(11, 0, 0), BitisSaati = new TimeSpan(12, 0, 0), Doluluk = true }
+                
             }
-        }
-    };
+        },
+
+		 new Calisan
+		{
+			Id = 3, Ad = "Leyla",
+			IslemTurleri = new List<int> { 4,5 }, 
+            CalismaSaatleri = new List<CalisanSaat>
+			{
+				new CalisanSaat { Id = 5, BaslangicSaati = new TimeSpan(10, 0, 0), BitisSaati = new TimeSpan(10, 30, 0), Doluluk = true },
+				new CalisanSaat { Id = 6, BaslangicSaati = new TimeSpan(10, 30, 0), BitisSaati = new TimeSpan(11, 0, 0), Doluluk = false },
+				new CalisanSaat { Id = 7, BaslangicSaati = new TimeSpan(11, 0, 0), BitisSaati = new TimeSpan(11, 30, 0), Doluluk = false },
+				new CalisanSaat { Id = 8, BaslangicSaati = new TimeSpan(11, 30, 0), BitisSaati = new TimeSpan(12, 0, 0), Doluluk = false },
+				new CalisanSaat { Id = 9, BaslangicSaati = new TimeSpan(13, 0, 0), BitisSaati = new TimeSpan(13, 30, 0), Doluluk = false }
+			}
+		},
+	};
 
     static List<Islem> Islemler = new List<Islem>
     {
         new Islem { Id = 1, Ad = "Saç Kesimi", Sure = 30 },
-        new Islem { Id = 2, Ad = "Fön Çekimi", Sure = 20 }
-    };
+        new Islem { Id = 2, Ad = "Saç Boyama", Sure = 60 },
+        new Islem { Id = 3, Ad = "Fön Çekimi", Sure = 20 },
+		new Islem { Id = 4, Ad = "Makyaj", Sure = 30 },
+        new Islem { Id = 5, Ad = "Tırnak Bakımı", Sure = 30 }
+
+	};
 
     // İşlem Seçimi Sayfası
     public IActionResult IslemSecim()
