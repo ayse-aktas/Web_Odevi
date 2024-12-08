@@ -1,3 +1,5 @@
+﻿using Microsoft.EntityFrameworkCore;
+
 namespace Coiffeur_Website
 {
     public class Program
@@ -16,6 +18,7 @@ namespace Coiffeur_Website
             );
 
             builder.Services.AddHttpContextAccessor();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

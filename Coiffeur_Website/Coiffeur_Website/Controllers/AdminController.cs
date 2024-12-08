@@ -19,7 +19,7 @@ namespace Coiffeur_Website.Controllers
             if (ModelState.IsValid)
             {
                 // Admin doğrulama işlemleri
-                bool isValidAdmin = admin.KullaniciAdi == "admin" && admin.Sifre == "admin123";
+                bool isValidAdmin = admin.AdminMail == "B221210000@sakarya.edu.tr" && admin.Sifre == "admin123";
                 if (isValidAdmin)
                 {
                     TempData["msj"] = "Başarılı admin girişi.";

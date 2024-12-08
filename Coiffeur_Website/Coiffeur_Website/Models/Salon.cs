@@ -4,11 +4,11 @@ namespace Coiffeur_Website.Models
 {
     public class Salon
     {
-        public int Id { get; set; }
-        public string SalonAdi { get; set; }
-        public List<Calisan> Calisanlar { get; set; }  // Salonla ilişkili çalışanlar
-        public List<Islem> Islemler { get; set; }  // Sunulan işlemler
-        public string CalismaSaatleri { get; set; }  // Salon çalışma saatleri
+        public int SalonId { get; set; }//PK
+        public int IslemId {  get; set; }//FK
+        public string SalonAd { get; set; }
+        public bool doluluk { get; set; }
+        public int dolulukSuresi { get; set; }// (doluluk=1 olma sayısı)*işlemsüresi
     }
 
 }

@@ -1,17 +1,19 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Net.Mail;
 
 namespace Coiffeur_Website.Models
 {
     public class Admin
     {
-        [Required]
-        [Display(Name = "Kullanıcı Adı")]
-        public string KullaniciAdi { get; set; }
-
+        public int AdminId { get; set; }
+        public string AdminAdi { get; set; }
+        public string AdminSoyadi { get; set; }
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Şifre")]
         public string Sifre { get; set; }
+        public string AdminMail { get; set; }
+
 
         // Randevuyu onaylama işlemi
         public void RandevuOnayla(Randevu randevu)
