@@ -1,0 +1,30 @@
+﻿@model List<Coiffeur_Website.Models.Musteri>  
+@{
+    ViewData["Title"] = "Müşteri Listesi";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Email</th>
+            <th>Telefon Numarası</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var musteri in Model)
+        {
+            <tr>
+                <td>@musteri.MusteriId</td>
+                <td>@musteri.MusteriAdi</td>
+                <td>@musteri.MusteriSoyadi</td>
+                <td>@musteri.MusteriMail</td>
+                <td>@musteri.TelNo</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Proje\\web\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\Coiffeur_Website.csproj": {}
+    "C:\\Users\\busra\\OneDrive\\Masaüstü\\Web_Odevi\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\Coiffeur_Website.csproj": {}
   },
   "projects": {
-    "D:\\Proje\\web\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\Coiffeur_Website.csproj": {
+    "C:\\Users\\busra\\OneDrive\\Masaüstü\\Web_Odevi\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\Coiffeur_Website.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Proje\\web\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\Coiffeur_Website.csproj",
+        "projectUniqueName": "C:\\Users\\busra\\OneDrive\\Masaüstü\\Web_Odevi\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\Coiffeur_Website.csproj",
         "projectName": "Coiffeur_Website",
-        "projectPath": "D:\\Proje\\web\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\Coiffeur_Website.csproj",
-        "packagesPath": "C:\\Users\\Ayse\\.nuget\\packages\\",
-        "outputPath": "D:\\Proje\\web\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\obj\\",
+        "projectPath": "C:\\Users\\busra\\OneDrive\\Masaüstü\\Web_Odevi\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\Coiffeur_Website.csproj",
+        "packagesPath": "C:\\Users\\busra\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\busra\\OneDrive\\Masaüstü\\Web_Odevi\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Ayse\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\busra\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -46,21 +42,21 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[6.0.30, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[6.0.3, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[6.0.3, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[6.0.18, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -86,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -8,8 +8,8 @@ public class Calisan
     public string CalisanAd { get; set; }
     public string CalisanSoyad { get; set; }
     public string UzmanlikAlani { get; set; }
-    public TimeOnly BaslangicSaati { get; set; }
-    public TimeOnly BitisSaati { get; set; } // TimeOnly olarak düzenlendi
+    public DateTime BaslangicSaati { get; set; }
+    public DateTime BitisSaati { get; set; } 
     public int Maas { get; set; }
     public int TopCalismaSaati { get; set; }
 
@@ -32,9 +32,9 @@ public class Calisan
 
             if (calismaSuresi > 0)
             {
-                float toplamIslemSayisi = (float)calismaSuresi / islem.Sure;
-
-                GunlukVerim = (GunlukKazanc * 100) / (toplamIslemSayisi * islem.Ucret);
+                // float toplamIslemSayisi = (float)calismaSuresi / islem.Sure;
+                //GunlukVerim = (GunlukKazanc * 100) / (toplamIslemSayisi * islem.Ucret);
+                GunlukVerim = calismaSuresi * islem.Ucret;
             }
             else
             {

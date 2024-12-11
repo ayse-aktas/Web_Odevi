@@ -6,7 +6,10 @@ namespace Coiffeur_Website.Data
 {
     public class CoiffeurDbContext : DbContext
     {
-
+        public CoiffeurDbContext(DbContextOptions<CoiffeurDbContext> options)
+        : base(options)
+        {
+        }
         // Modelleri DbSet olarak ekleyin
         public DbSet<Admin> Adminler { get; set; }
         public DbSet<Musteri> Musteriler { get; set; }
@@ -18,7 +21,7 @@ namespace Coiffeur_Website.Data
         //Veri tabanına bağlanma:
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb; Database=Coiffeur;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB; Database=Coiffeur2;Trusted_Connection=True;");
         }
     }
 }
