@@ -10,7 +10,7 @@ namespace Coiffeur_Website.Models
         public string MusteriSoyadi { get; set; }
         public string Sifre { get; set; }
         public string MusteriMail { get; set; }
-        public string FotografAdres {  get; set; }
+       // public string FotografAdres {  get; set; }
 
         [Required(ErrorMessage = "Telefon numarası zorunludur.")]
         [Phone(ErrorMessage = "Geçerli bir telefon numarası giriniz.")]
