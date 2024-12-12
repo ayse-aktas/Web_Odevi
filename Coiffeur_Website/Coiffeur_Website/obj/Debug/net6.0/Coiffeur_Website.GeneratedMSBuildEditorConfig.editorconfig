@@ -9,45 +9,53 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Coiffeur_Website
 build_property.RootNamespace = Coiffeur_Website
-build_property.ProjectDir = D:\Proje\web\Web_Odevi\Coiffeur_Website\Coiffeur_Website\
+build_property.ProjectDir = C:\Users\busra\OneDrive\Masaüstü\Web_Odevi\Web_Odevi\Coiffeur_Website\Coiffeur_Website\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Proje\web\Web_Odevi\Coiffeur_Website\Coiffeur_Website
+build_property.MSBuildProjectDirectory = C:\Users\busra\OneDrive\Masaüstü\Web_Odevi\Web_Odevi\Coiffeur_Website\Coiffeur_Website
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Admin/AdminLogin.cshtml]
+[C:/Users/busra/OneDrive/Masaüstü/Web_Odevi/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Admin/AdminLogin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5Mb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Admin/Dashboard.cshtml]
+[C:/Users/busra/OneDrive/Masaüstü/Web_Odevi/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Admin/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Home/Index.cshtml]
+[C:/Users/busra/OneDrive/Masaüstü/Web_Odevi/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Home/Privacy.cshtml]
+[C:/Users/busra/OneDrive/Masaüstü/Web_Odevi/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Shared/Error.cshtml]
+[C:/Users/busra/OneDrive/Masaüstü/Web_Odevi/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Musteri/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVzdGVyaVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/busra/OneDrive/Masaüstü/Web_Odevi/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Musteri/KayitOl.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVzdGVyaVxLYXlpdE9sLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/busra/OneDrive/Masaüstü/Web_Odevi/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/busra/OneDrive/Masaüstü/Web_Odevi/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/_ViewImports.cshtml]
+[C:/Users/busra/OneDrive/Masaüstü/Web_Odevi/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/_ViewStart.cshtml]
+[C:/Users/busra/OneDrive/Masaüstü/Web_Odevi/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Shared/_Layout.cshtml]
+[C:/Users/busra/OneDrive/Masaüstü/Web_Odevi/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-53ctl1pyp8

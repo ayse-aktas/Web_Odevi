@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Coiffeur_Website.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Coiffeur_Website
 {
@@ -10,6 +11,10 @@ namespace Coiffeur_Website
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<CoiffeurDbContext>(option => option.UseSqlServer
+            (builder.Configuration.GetConnectionString("DefaultConnection")));
+            
+
             builder.Services.AddSession(
             opt =>
             {
