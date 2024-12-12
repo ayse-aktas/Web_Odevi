@@ -18,6 +18,8 @@ namespace Coiffeur_Website
             );
 
             builder.Services.AddHttpContextAccessor();
+            builder.Services.AddDbContext<Data.CoiffeurDbContext>();
+
 
             var app = builder.Build();
 
