@@ -1,42 +1,52 @@
 ﻿@model Coiffeur_Website.Models.Admin
 
-<div class="alert-danger">
-    @if (TempData["msj"] != null)
-    {
-        <p>@TempData["msj"]</p>
-    }
-</div>
+@{
+    ViewData["Title"] = "Admin Girişi";
+}
 
-<div class="row">
-    <div class="col-md-4">
-        <h3>Admin Girişi</h3>
-        <form asp-action="AdminLogin" asp-controller="Admin" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="text-center">Admin Girişi</h4>
+                </div>
+                <div class="card-body">
+                    <!-- Hata mesajı gösterimi -->
+                    @if (TempData["msj"] != null)
+                    {
+                        <div class="alert @(TempData["msj"].ToString().Contains("Başarılı") ? "alert-success" : "alert-danger")">
+                            <p>@TempData["msj"]</p>
+                        </div>
+                    }
 
-            <div class="form-group">
-                <label asp-for="AdminAdi" class="control-label"></label>
-                <input asp-for="AdminAdi" class="form-control" />
-                <span asp-validation-for="AdminAdi" class="text-danger"></span>
+
+                    <!-- Giriş Formu -->
+                    <form asp-action="AdminLogin" asp-controller="Admin" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="AdminMail" class="form-label">E-posta</label>
+                            <input asp-for="AdminMail" class="form-control" type="email" placeholder="E-posta adresinizi giriniz" />
+                            <span asp-validation-for="AdminMail" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Sifre" class="form-label">Şifre</label>
+                            <input asp-for="Sifre" class="form-control" type="password" placeholder="Şifrenizi giriniz" />
+                            <span asp-validation-for="Sifre" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group d-grid">
+                            <button type="submit" class="btn btn-danger">Giriş Yap</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label asp-for="Sifre" class="control-label"></label>
-                <input asp-for="Sifre" class="form-control" type="password" />
-                <span asp-validation-for="Sifre" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <input type="submit" value="Admin Giriş" class="btn btn-danger" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
-
-@section Scripts
-    {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 }
-

@@ -1,11 +1,39 @@
-﻿@{
-    ViewData["Title"] = "Admin Dashboard";
+﻿@model IEnumerable<Coiffeur_Website.Models.Randevu>
+
+<h2>Admin Dashboard</h2>
+
+@if (TempData["msj"] != null)
+{
+    <div class="alert alert-info">@TempData["msj"]</div>
 }
 
-<h3>Admin Dashboard</h3>
-
-<!-- Randevu Onayları için bir panel -->
-<div>
-    <h4>Randevu Onayları</h4>
-    <!-- Burada Randevu Onay/Reddet işlemi yapılacak -->
-</div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Randevu Tarihi</th>
+            <th>İşlem</th>
+            <th>Çalışan</th>
+            <th>Durum</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var randevu in ViewBag.Randevular)
+        {
+            <tr>
+                <td>@randevu.RandevuTarihi</td>
+                <td>@randevu.IslemAdi</td>
+                <td>@randevu.CalisanAdi</td>
+                <td>@randevu.OnayDurumu ? "Onaylı" : "Onaysız"</td>
+                <td>
+                    <form method="post" asp-action="Onayla" asp-route-id="@randevu.RandevuId">
+                        <button type="submit" class="btn btn-success btn-sm">Onayla</button>
+                    </form>
+                    <form method="post" asp-action="Reddet" asp-route-id="@randevu.RandevuId">
+                        <button type="submit" class="btn btn-danger btn-sm">Reddet</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

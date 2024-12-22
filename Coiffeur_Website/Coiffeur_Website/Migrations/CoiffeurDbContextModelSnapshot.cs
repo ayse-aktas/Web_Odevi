@@ -47,9 +47,6 @@ namespace Coiffeur_Website.Migrations
                     b.Property<float>("GunlukKazanc")
                         .HasColumnType("real");
 
-                    b.Property<float>("GunlukVerim")
-                        .HasColumnType("real");
-
                     b.Property<int>("Maas")
                         .HasColumnType("int");
 
@@ -77,7 +74,6 @@ namespace Coiffeur_Website.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdminId"), 1L, 1);
 
                     b.Property<string>("AdminAdi")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AdminMail")
@@ -85,7 +81,6 @@ namespace Coiffeur_Website.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AdminSoyadi")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Sifre")
@@ -132,7 +127,6 @@ namespace Coiffeur_Website.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MusteriId"), 1L, 1);
 
                     b.Property<string>("MusteriAdi")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MusteriMail")
@@ -140,7 +134,6 @@ namespace Coiffeur_Website.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MusteriSoyadi")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Sifre")
@@ -148,7 +141,6 @@ namespace Coiffeur_Website.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TelNo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("MusteriId");

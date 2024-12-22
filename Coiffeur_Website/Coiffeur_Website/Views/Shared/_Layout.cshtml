@@ -20,24 +20,42 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Kullanici" asp-action="Index">Ana Sayfa</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Kullanici" asp-action="KullaniciIcerik">İçerik</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
                         </li>
 
-                        @if (Context.Session.GetString("SesUsr") is not null)
+                        @if (User.Identity != null && User.Identity.IsAuthenticated)
+                        {
+                            // Kullanıcı rolünü ViewContext üzerinden kontrol et
+                            var role = ViewContext.HttpContext.Session.GetString("UserRole"); // UserRole session'ı kontrol ediyoruz
+                            Console.WriteLine("Roleeeeeeeeeee", role);
+                            if (role == "Admin")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Logout">Admin Çıkış</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Dashboard">Admin Dashboard</a>
+                                </li>
+                            }
+                            else if (role == "Musteri")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Musteri" asp-action="Logout">Müşteri Çıkış</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Musteri" asp-action="Dashboard">Müşteri Dashboard</a>
+                                </li>
+                            }
+                        }
+                        else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Kullanici" asp-action="KullaniciSesSet">User Session Oluştur</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AdminLogin">Login Admin</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Kullanici" asp-action="KullaniciSesGet">User Session Göster</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Musteri" asp-action="MusteriLogin">Login Müşteri</a>
                             </li>
                         }
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Kullanici" asp-action="LogOut">Çıkış</a>
-                        </li>
                     </ul>
                 </div>
             </div>

@@ -40,6 +40,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVzdGVyaVxLYXlpdE9sLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Musteri/MusteriDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVzdGVyaVxNdXN0ZXJpRGFzaGJvYXJkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Musteri/MusteriLogin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVzdGVyaVxNdXN0ZXJpTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

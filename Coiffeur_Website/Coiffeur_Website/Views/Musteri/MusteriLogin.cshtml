@@ -1,0 +1,38 @@
+﻿@model Coiffeur_Website.Models.Musteri
+
+@{
+    ViewData["Title"] = "Müşteri Giriş";
+}
+
+<h2>Müşteri Giriş</h2>
+
+@if (TempData["msj"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["msj"]
+    </div>
+}
+
+<form asp-action="MusteriLogin" method="post" class="form-horizontal">
+    <div class="form-group">
+        <label asp-for="MusteriMail" class="control-label">E-posta Adresi</label>
+        <input asp-for="MusteriMail" class="form-control" />
+        <span asp-validation-for="MusteriMail" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Sifre" class="control-label">Şifre</label>
+        <input asp-for="Sifre" class="form-control" type="password" />
+        <span asp-validation-for="Sifre" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Giriş Yap</button>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Coiffeur_Website.Models.Randevu>
+
+@{
+    ViewData["Title"] = "Müşteri Dashboard";
+    var salonlar = ViewBag.Salonlar as IEnumerable<SelectListItem>;
+}
+
+<h2>Hoş Geldiniz, @ViewBag.MusteriName</h2>
+
+@if (TempData["msj"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["msj"]
+    </div>
+}
+
+<h3>Randevu Planlama</h3>
+<form asp-action="PlanRandevu" method="post">
+    <div class="form-group">
+        <label for="SalonId">Salon</label>
+        <select class="form-control" id="SalonId" name="SalonId" required>
+            <option value="">Lütfen bir salon seçin</option>
+            @if (salonlar != null)
+            {
+                @foreach (var salon in salonlar)
+                {
+                    <option value="@salon.Value">@salon.Text</option>
+                }
+            }
+            else
+            {
+                <option value="">Salon bilgisi yüklenemedi</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="CalisanId">Çalışan</label>
+        <select class="form-control" id="CalisanId" name="CalisanId" required>
+            <option value="">Önce bir salon seçin</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="IslemId">İşlem</label>
+        <select class="form-control" id="IslemId" name="IslemId" required>
+            <option value="">Önce bir çalışan seçin</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="RandevuTarihi">Uygun Tarih ve Saat</label>
+        <input type="datetime-local" class="form-control" id="RandevuTarihi" name="RandevuTarihi" required disabled />
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Planla</button>
+</form>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Salon seçildiğinde çalışanları yükle
+            $('#SalonId').change(function () {
+                var salonId = $(this).val();
+                if (salonId) {
+                    $.getJSON('/Musteri/GetCalisanlarBySalonId', { salonId: salonId }, function (data) {
+                        $('#CalisanId').empty().append('<option value="">Lütfen bir çalışan seçin</option>');
+                        $.each(data, function (index, calisan) {
+                            $('#CalisanId').append('<option value="' + calisan.calisanId + '">' + calisan.calisanAd + '</option>');
+                        });
+                        $('#IslemId').empty().append('<option value="">Önce bir çalışan seçin</option>');
+                        $('#RandevuTarihi').prop('disabled', true).val('');
+                    });
+                }
+            });
+
+            // Çalışan seçildiğinde işlemleri ve uygun saatleri yükle
+            $('#CalisanId').change(function () {
+                var calisanId = $(this).val();
+                if (calisanId) {
+                    // İşlemleri yükle
+                    $.getJSON('/Musteri/GetIslemlerByCalisanId', { calisanId: calisanId }, function (data) {
+                        $('#IslemId').empty().append('<option value="">Lütfen bir işlem seçin</option>');
+                        $.each(data, function (index, islem) {
+                            $('#IslemId').append('<option value="' + islem.islemId + '">' + islem.islemAdi + ' - ' + islem.ucret + '₺ (' + islem.sure + ' dk)</option>');
+                        });
+                    });
+
+                    // Uygun saatleri yükle
+                    $.getJSON('/Musteri/GetCalisanAvailability', { calisanId: calisanId }, function (data) {
+                        $('#RandevuTarihi').prop('disabled', false);
+                        console.log(data); // Kullanıcıya uygun olmayan tarihleri göstermek için buradan ilerleyebilirsiniz
+                    });
+                }
+            });
+        });
+    </script>
+}
