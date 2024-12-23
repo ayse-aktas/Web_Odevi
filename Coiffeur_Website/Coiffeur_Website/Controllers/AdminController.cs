@@ -14,14 +14,12 @@ namespace Coiffeur_Website.Controllers
             _context = context;
         }
 
-        // Admin Login GET
         [HttpGet]
         public IActionResult AdminLogin()
         {
             return View();
         }
 
-        // Admin Login POST
         [HttpPost]
         public IActionResult AdminLogin(Admin admin)
         {
@@ -35,39 +33,53 @@ namespace Coiffeur_Website.Controllers
                 return View();
             }
 
-            // Kullanıcının rolünü session'da saklıyoruz
+            // Admin olarak giriş yapan kullanıcıyı session'a kaydet
             HttpContext.Session.SetString("UserRole", "Admin");
             TempData["adminName"] = existingAdmin.AdminAdi;
             return RedirectToAction("Dashboard");
         }
 
-        // Admin Dashboard GET
         [HttpGet]
         public IActionResult Dashboard()
         {
-            // Randevuları ilgili tablolarla birlikte yüklüyoruz
+            // Kullanıcının admin olup olmadığını kontrol et
+            var role = HttpContext.Session.GetString("UserRole");
+            if (role != "Admin")
+            {
+                TempData["msj"] = "Bu sayfaya erişmek için admin olarak giriş yapmalısınız.";
+                return RedirectToAction("AdminLogin");
+            }
+
+            // Eğer adminse dashboard verilerini yükle
             var randevular = _context.Randevular
-                .Include(r => r.IslemId)  // İşlem bilgilerini yükle
-                .Include(r => r.CalisanId) // Çalışan bilgilerini yükle
+                .Include(r => r.Calisan)
+                .Include(r => r.Islem)
+                .Include(r => r.Salon)
                 .ToList();
 
-            // ViewBag ile randevuları aktar
             ViewBag.Randevular = randevular.Select(r => new
             {
                 r.RandevuId,
                 r.RandevuTarihi,
                 r.OnayDurumu,
-                IslemAdi = _context.Islemler.FirstOrDefault(i => i.IslemId == r.IslemId)?.IslemAdi,
-                CalisanAdi = _context.Calisanlar.FirstOrDefault(c => c.CalisanId == r.CalisanId)?.CalisanAd
+                IslemAdi = r.Islem?.IslemAdi,
+                CalisanAdi = r.Calisan?.CalisanAd
             }).ToList();
 
             return View(randevular);
         }
 
-        // Randevuyu Onayla
         [HttpPost]
         public IActionResult Onayla(int id)
         {
+            // Kullanıcının admin olup olmadığını kontrol et
+            var role = HttpContext.Session.GetString("UserRole");
+            if (role != "Admin")
+            {
+                TempData["msj"] = "Bu işlemi gerçekleştirmek için admin olarak giriş yapmalısınız.";
+                return RedirectToAction("AdminLogin");
+            }
+
             var randevu = _context.Randevular.Find(id);
             if (randevu != null)
             {
@@ -77,10 +89,17 @@ namespace Coiffeur_Website.Controllers
             return RedirectToAction("Dashboard");
         }
 
-        // Randevuyu Reddet
         [HttpPost]
         public IActionResult Reddet(int id)
         {
+            // Kullanıcının admin olup olmadığını kontrol et
+            var role = HttpContext.Session.GetString("UserRole");
+            if (role != "Admin")
+            {
+                TempData["msj"] = "Bu işlemi gerçekleştirmek için admin olarak giriş yapmalısınız.";
+                return RedirectToAction("AdminLogin");
+            }
+
             var randevu = _context.Randevular.Find(id);
             if (randevu != null)
             {
@@ -88,6 +107,15 @@ namespace Coiffeur_Website.Controllers
                 _context.SaveChanges();
             }
             return RedirectToAction("Dashboard");
+        }
+
+        [HttpGet]
+        public IActionResult Logout()
+        {
+            // Admin oturumunu sonlandır
+            HttpContext.Session.Clear(); // Tüm session bilgilerini temizler
+            TempData["msj"] = "Başarıyla çıkış yaptınız.";
+            return RedirectToAction("AdminLogin"); // Admin giriş sayfasına yönlendir
         }
     }
 }

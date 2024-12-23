@@ -4,6 +4,7 @@ using Coiffeur_Website.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Coiffeur_Website.Migrations
 {
     [DbContext(typeof(CoiffeurDbContext))]
-    partial class CoiffeurDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241223144953_calisanModelUpdated")]
+    partial class calisanModelUpdated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

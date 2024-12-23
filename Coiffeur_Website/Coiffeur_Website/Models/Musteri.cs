@@ -19,6 +19,8 @@ namespace Coiffeur_Website.Models
         [Phone(ErrorMessage = "Geçerli bir telefon numarası giriniz.")]
         [RegularExpression(@"^\+?[1-9]\d{1,14}$", ErrorMessage = "Telefon numarası geçerli bir formatta olmalıdır. Örnek: +90 (555) 123 4567")]
         public string? TelNo { get; set; }
-    }
 
+        // Navigasyon özelliklerini ekle
+        public ICollection<Randevu>? Randevular { get; set; }
+    }
 }

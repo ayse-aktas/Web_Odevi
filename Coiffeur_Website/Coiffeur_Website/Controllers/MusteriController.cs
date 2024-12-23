@@ -15,55 +15,17 @@ namespace Coiffeur_Website.Controllers
             _context = context;
         }
 
-        // Kayıt Formunu Göster
-        [HttpGet]
-        public IActionResult KayitOl()
-        {
-            return View();
-        }
-
-        // POST: Musteri/KayitOl
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> KayitOl(Musteri musteri)
-        {
-            if (!ModelState.IsValid) return View(musteri);
-
-            _context.Musteriler.Add(musteri);
-            await _context.SaveChangesAsync();
-            TempData["msj"] = "Kayıt başarılı!";
-            return RedirectToAction("MusteriLogin");
-        }
-
-        // Musteri Login GET
-        [HttpGet]
-        public IActionResult MusteriLogin()
-        {
-            return View();
-        }
-
-        // Musteri Login POST
-        [HttpPost]
-        public IActionResult MusteriLogin(Musteri musteri)
-        {
-            if (!ModelState.IsValid) return View();
-
-            var existingMusteri = _context.Musteriler.FirstOrDefault(m => m.MusteriMail == musteri.MusteriMail);
-
-            if (existingMusteri == null || existingMusteri.Sifre != musteri.Sifre)
-            {
-                TempData["msj"] = "E-posta veya şifre hatalı!";
-                return View();
-            }
-
-            HttpContext.Session.SetString("UserRole", "Musteri");
-            TempData["musteriName"] = existingMusteri.MusteriAdi;
-            return RedirectToAction("MusteriDashboard");
-        }
-
         [HttpGet]
         public IActionResult MusteriDashboard()
         {
+            // Kullanıcının oturumda olup olmadığını ve rolünün "Musteri" olduğunu kontrol et
+            var role = HttpContext.Session.GetString("UserRole");
+            if (role != "Musteri")
+            {
+                // Yetkisiz kullanıcıyı giriş sayfasına yönlendir
+                TempData["msj"] = "Bu sayfaya erişmek için önce müşteri olarak giriş yapmalısınız.";
+                return RedirectToAction("MusteriLogin", "Musteri");
+            }
             string musteriName = TempData["musteriName"] as string;
             TempData.Keep("musteriName");
             ViewBag.MusteriName = musteriName;
@@ -86,14 +48,82 @@ namespace Coiffeur_Website.Controllers
                 Text = s.SalonAd + (s.doluluk ? " (Dolu)" : " (Boş)")
             }).ToList();
 
-            return View(_context.Randevular.ToList());
+            return View(_context.Randevular.Include(r => r.Calisan).Include(r => r.Islem).Include(r => r.Salon).ToList());
+        }
+
+        [HttpPost]
+        public IActionResult RandevuAl(Randevu randevu)
+        {
+            if (!ModelState.IsValid) return RedirectToAction("MusteriDashboard");
+
+            _context.Randevular.Add(randevu);
+            _context.SaveChanges();
+
+            TempData["msj"] = "Randevunuz başarıyla oluşturuldu!";
+            return RedirectToAction("MusteriDashboard");
+        }
+
+        [HttpGet]
+        public IActionResult KayitOl()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> KayitOl(Musteri musteri)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["msj"] = "Lütfen tüm alanları doğru bir şekilde doldurun!";
+                return View(musteri);
+            }
+
+            // Email kontrolü - Zaten kayıtlıysa hata mesajı döndür
+            if (_context.Musteriler.Any(m => m.MusteriMail == musteri.MusteriMail))
+            {
+                TempData["msj"] = "Bu e-posta adresi zaten kayıtlı!";
+                return View(musteri);
+            }
+
+            // Yeni müşteri kaydı
+            _context.Musteriler.Add(musteri);
+            await _context.SaveChangesAsync();
+
+            TempData["msj"] = "Kayıt başarılı! Şimdi giriş yapabilirsiniz.";
+            return RedirectToAction("MusteriLogin");
+        }
+
+
+        [HttpGet]
+        public IActionResult MusteriLogin()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult MusteriLogin(Musteri musteri)
+        {
+            if (!ModelState.IsValid) return View();
+
+            var existingMusteri = _context.Musteriler.FirstOrDefault(m => m.MusteriMail == musteri.MusteriMail);
+
+            if (existingMusteri == null || existingMusteri.Sifre != musteri.Sifre)
+            {
+                TempData["msj"] = "E-posta veya şifre hatalı!";
+                return View();
+            }
+
+            HttpContext.Session.SetString("UserRole", "Musteri");
+            TempData["musteriName"] = existingMusteri.MusteriAdi;
+            return RedirectToAction("MusteriDashboard");
         }
 
         [HttpGet]
         public IActionResult GetCalisanlarBySalonId(int salonId)
         {
             var calisanlar = _context.Calisanlar
-                .Where(c => c.SalonId == salonId)
+                .Where(c => c.Salon.SalonId == salonId)
                 .Select(c => new { c.CalisanId, c.CalisanAd })
                 .ToList();
             return Json(calisanlar);
@@ -103,10 +133,19 @@ namespace Coiffeur_Website.Controllers
         public IActionResult GetCalisanAvailability(int calisanId)
         {
             var availability = _context.Randevular
-                .Where(r => r.CalisanId == calisanId)
+                .Where(r => r.Calisan.CalisanId == calisanId)
                 .Select(r => new { r.RandevuTarihi })
                 .ToList();
             return Json(availability);
         }
+
+        [HttpGet]
+        public IActionResult Logout()
+        {
+            // Kullanıcının oturumunu sonlandır
+            HttpContext.Session.Clear();
+            return RedirectToAction("MusteriLogin");
+        }
+
     }
 }
