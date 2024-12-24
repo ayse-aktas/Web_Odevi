@@ -1,0 +1,103 @@
+﻿<form asp-action="RandevuAl" method="post" style="max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #f9f9f9;">
+    <h2 style="text-align: center; margin-bottom: 20px;">Randevu Al</h2>
+
+    <!-- İşlem Seçimi -->
+    <div style="margin-bottom: 15px;">
+        <label for="islem" style="font-weight: bold;">İşlem:</label>
+        <select id="islem" name="islemId" class="form-control" required>
+            <option value="">Lütfen bir işlem seçiniz</option>
+            @if (ViewBag.Islemler != null)
+            {
+                foreach (var item in ViewBag.Islemler)
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            }
+            else
+            {
+                <option value="">İşlem verisi bulunamadı</option>
+            }
+        </select>
+    </div>
+
+    <!-- Tarih Seçimi -->
+    <div style="margin-bottom: 15px;">
+        <label for="tarih" style="font-weight: bold;">Tarih:</label>
+        <input type="date" id="tarih" name="tarih" class="form-control" required>
+    </div>
+
+    <!-- Kuaför Seçimi -->
+    <div style="margin-bottom: 15px;">
+        <label for="calisan" style="font-weight: bold;">Kuaför Tercihi:</label>
+        <select id="calisan" name="calisanId" class="form-control">
+            <option value="0">Farketmez</option>
+            @if (ViewBag.Calisanlar != null)
+            {
+                foreach (var item in ViewBag.Calisanlar)
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            }
+            else
+            {
+                <option value="">Kuaför verisi bulunamadı</option>
+            }
+        </select>
+    </div>
+
+    <!-- Saat Seçimi -->
+    <div style="margin-bottom: 15px;">
+        <label for="saat" style="font-weight: bold;">Mevcut Saatler:</label>
+        <select id="saat" name="saat" class="form-control">
+            <option value="">Mevcut saat bulunamadı</option>
+        </select>
+    </div>
+
+    <!-- Submit Butonu -->
+    <div style="text-align: center;">
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Randevu Al</button>
+    </div>
+</form>
+
+<script>
+    // Çalışan veya tarih değiştiğinde uygun saatleri yükle
+    function loadAvailableHours() {
+        const calisanId = document.getElementById("calisan").value;
+        const tarih = document.getElementById("tarih").value;
+        const islemId = document.getElementById("islem").value;
+
+        if (calisanId && tarih && islemId) {
+            $.ajax({
+                url: '/Musteri/GetCalisanMusaitSaatler',
+                type: 'GET',
+                data: { calisanId: calisanId, tarih: tarih, islemId: islemId },
+                success: function (response) {
+                    const saatSelect = document.getElementById("saat");
+                    saatSelect.innerHTML = ''; // Mevcut seçenekleri temizle
+
+                    if (response.success && response.saatler.length > 0) {
+                        response.saatler.forEach(saat => {
+                            const option = document.createElement("option");
+                            option.value = saat.Baslangic;
+                            option.text = `${saat.Baslangic} - ${saat.Bitis}`;
+                            saatSelect.appendChild(option);
+                        });
+                    } else {
+                        const option = document.createElement("option");
+                        option.value = '';
+                        option.text = response.message || "Mevcut saat bulunamadı";
+                        saatSelect.appendChild(option);
+                    }
+                },
+                error: function () {
+                    alert("Saat bilgileri yüklenirken bir hata oluştu.");
+                }
+            });
+        }
+    }
+
+    // Event listener ekle
+    document.getElementById("calisan").addEventListener("change", loadAvailableHours);
+    document.getElementById("tarih").addEventListener("change", loadAvailableHours);
+    document.getElementById("islem").addEventListener("change", loadAvailableHours);
+</script>

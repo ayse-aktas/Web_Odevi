@@ -22,7 +22,34 @@ namespace Coiffeur_Website.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Calisan", b =>
+            modelBuilder.Entity("Coiffeur_Website.Models.Admin", b =>
+                {
+                    b.Property<int>("AdminId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdminId"), 1L, 1);
+
+                    b.Property<string>("AdminAdi")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AdminMail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AdminSoyadi")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Sifre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AdminId");
+
+                    b.ToTable("Adminler");
+                });
+
+            modelBuilder.Entity("Coiffeur_Website.Models.Calisan", b =>
                 {
                     b.Property<int>("CalisanId")
                         .ValueGeneratedOnAdd()
@@ -50,7 +77,7 @@ namespace Coiffeur_Website.Migrations
                     b.Property<int>("Maas")
                         .HasColumnType("int");
 
-                    b.Property<int>("SalonId")
+                    b.Property<int?>("SalonId")
                         .HasColumnType("int");
 
                     b.Property<int>("TopCalismaSaati")
@@ -65,33 +92,6 @@ namespace Coiffeur_Website.Migrations
                     b.HasIndex("SalonId");
 
                     b.ToTable("Calisanlar");
-                });
-
-            modelBuilder.Entity("Coiffeur_Website.Models.Admin", b =>
-                {
-                    b.Property<int>("AdminId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdminId"), 1L, 1);
-
-                    b.Property<string>("AdminAdi")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AdminMail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AdminSoyadi")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Sifre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("AdminId");
-
-                    b.ToTable("Adminler");
                 });
 
             modelBuilder.Entity("Coiffeur_Website.Models.Islem", b =>
@@ -166,11 +166,16 @@ namespace Coiffeur_Website.Migrations
                     b.Property<int>("IslemId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("MusteriId")
+                    b.Property<int>("MusteriId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("OnayDurumu")
-                        .HasColumnType("bit");
+                    b.Property<string>("OnayDurumu")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RandevuSaati")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("RandevuTarihi")
                         .HasColumnType("datetime2");
@@ -214,13 +219,11 @@ namespace Coiffeur_Website.Migrations
                     b.ToTable("Salonlar");
                 });
 
-            modelBuilder.Entity("Calisan", b =>
+            modelBuilder.Entity("Coiffeur_Website.Models.Calisan", b =>
                 {
                     b.HasOne("Coiffeur_Website.Models.Salon", "Salon")
                         .WithMany("Calisanlar")
-                        .HasForeignKey("SalonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SalonId");
 
                     b.Navigation("Salon");
                 });
@@ -238,10 +241,10 @@ namespace Coiffeur_Website.Migrations
 
             modelBuilder.Entity("Coiffeur_Website.Models.Randevu", b =>
                 {
-                    b.HasOne("Calisan", "Calisan")
+                    b.HasOne("Coiffeur_Website.Models.Calisan", "Calisan")
                         .WithMany("Randevular")
                         .HasForeignKey("CalisanId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Coiffeur_Website.Models.Islem", "Islem")
@@ -250,9 +253,11 @@ namespace Coiffeur_Website.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Coiffeur_Website.Models.Musteri", null)
+                    b.HasOne("Coiffeur_Website.Models.Musteri", "Musteri")
                         .WithMany("Randevular")
-                        .HasForeignKey("MusteriId");
+                        .HasForeignKey("MusteriId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Coiffeur_Website.Models.Salon", "Salon")
                         .WithMany("Randevular")
@@ -264,10 +269,12 @@ namespace Coiffeur_Website.Migrations
 
                     b.Navigation("Islem");
 
+                    b.Navigation("Musteri");
+
                     b.Navigation("Salon");
                 });
 
-            modelBuilder.Entity("Calisan", b =>
+            modelBuilder.Entity("Coiffeur_Website.Models.Calisan", b =>
                 {
                     b.Navigation("Randevular");
                 });

@@ -1,0 +1,21 @@
+﻿@model Coiffeur_Website.Models.Calisan
+
+<div class="container mt-5">
+    <h2>Çalışanı Sil</h2>
+    <p class="text-danger">Bu işlemi onayladığınızda, çalışan kalıcı olarak silinecektir.</p>
+    <div class="card p-3">
+        <h5 class="card-title">@Model.CalisanAd @Model.CalisanSoyad</h5>
+        <p class="card-text">
+            <strong>Uzmanlık Alanı:</strong> @Model.UzmanlikAlani<br />
+            <strong>Başlangıç Saati:</strong> @Model.BaslangicSaati.ToShortTimeString()<br />
+            <strong>Bitiş Saati:</strong> @Model.BitisSaati.ToShortTimeString()
+        </p>
+    </div>
+    <div class="mt-3">
+        <form asp-action="DeleteConfirmedPost" method="post">
+            <input type="hidden" name="id" value="@Model.CalisanId" />
+            <button type="submit" class="btn btn-danger">Evet, Sil</button>
+            <a asp-action="CalisanList" class="btn btn-secondary">Hayır, Geri Dön</a>
+        </form>
+    </div>
+</div>

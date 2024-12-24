@@ -1,0 +1,37 @@
+﻿@model Coiffeur_Website.Models.Calisan
+
+@if (Model == null)
+{
+    <div class="alert alert-danger">
+        Model bilgisi bulunamadı! Lütfen sayfayı tekrar yükleyin veya yöneticinizle iletişime geçin.
+    </div>
+}
+else
+{
+    <form asp-action="@ViewData["Action"]" method="post" style="max-width: 600px; margin: auto;">
+        <h3>Çalışan Ekle</h3>
+        <div class="mb-3">
+            <label for="CalisanAd" class="form-label">Çalışan Adı</label>
+            <input type="text" class="form-control" id="CalisanAd" name="CalisanAd" value="@Model.CalisanAd" required />
+        </div>
+        <div class="mb-3">
+            <label for="CalisanSoyad" class="form-label">Çalışan Soyadı</label>
+            <input type="text" class="form-control" id="CalisanSoyad" name="CalisanSoyad" value="@Model.CalisanSoyad" required />
+        </div>
+        <div class="mb-3">
+            <label for="UzmanlikAlani" class="form-label">Uzmanlık Alanı</label>
+            <input type="text" class="form-control" id="UzmanlikAlani" name="UzmanlikAlani" value="@Model.UzmanlikAlani" required />
+        </div>
+        <div class="mb-3">
+            <label for="BaslangicSaati" class="form-label">Başlangıç Saati</label>
+            <input type="time" class="form-control" id="BaslangicSaati" name="BaslangicSaati" value="@Model.BaslangicSaati.ToShortTimeString()" required />
+        </div>
+        <div class="mb-3">
+            <label for="BitisSaati" class="form-label">Bitiş Saati</label>
+            <input type="time" class="form-control" id="BitisSaati" name="BitisSaati" value="@Model.BitisSaati.ToShortTimeString()" required />
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+        </div>
+    </form>
+}

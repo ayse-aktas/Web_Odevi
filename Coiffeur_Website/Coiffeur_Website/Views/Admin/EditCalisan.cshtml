@@ -1,0 +1,54 @@
+﻿@model Coiffeur_Website.Models.Calisan
+
+@{
+    ViewData["Title"] = "Çalışan Güncelle";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center">Çalışan Güncelle</h2>
+    <form asp-action="EditCalisan" method="post" class="mt-4">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="CalisanId" />
+
+        <div class="mb-3">
+            <label for="CalisanAd" class="form-label">Çalışan Adı</label>
+            <input type="text" class="form-control" asp-for="CalisanAd" required />
+            @Html.ValidationMessageFor(m => m.CalisanAd, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="mb-3">
+            <label for="CalisanSoyad" class="form-label">Çalışan Soyadı</label>
+            <input type="text" class="form-control" asp-for="CalisanSoyad" required />
+            @Html.ValidationMessageFor(m => m.CalisanSoyad, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="mb-3">
+            <label for="UzmanlikAlani" class="form-label">Uzmanlık Alanı</label>
+            <input type="text" class="form-control" asp-for="UzmanlikAlani" required />
+            @Html.ValidationMessageFor(m => m.UzmanlikAlani, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="mb-3">
+            <label for="BaslangicSaati" class="form-label">Başlangıç Saati</label>
+            <input type="time" class="form-control" asp-for="BaslangicSaati" required />
+            @Html.ValidationMessageFor(m => m.BaslangicSaati, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="mb-3">
+            <label for="BitisSaati" class="form-label">Bitiş Saati</label>
+            <input type="time" class="form-control" asp-for="BitisSaati" required />
+            @Html.ValidationMessageFor(m => m.BitisSaati, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="mb-3">
+            <label for="SalonId" class="form-label">Salon</label>
+            <select class="form-control" asp-for="SalonId" asp-items="ViewBag.Salonlar" required>
+                <option value="">Lütfen bir salon seçiniz</option>
+            </select>
+            @Html.ValidationMessageFor(m => m.SalonId, "", new { @class = "text-danger" })
+        </div>
+
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+        <a asp-action="CalisanList" class="btn btn-secondary">İptal</a>
+    </form>
+</div>

@@ -18,43 +18,80 @@ namespace Coiffeur_Website.Controllers
         [HttpGet]
         public IActionResult MusteriDashboard()
         {
-            // Kullanıcının oturumda olup olmadığını ve rolünün "Musteri" olduğunu kontrol et
+            // Kullanıcı oturumu kontrol et
             var role = HttpContext.Session.GetString("UserRole");
             if (role != "Musteri")
             {
-                // Yetkisiz kullanıcıyı giriş sayfasına yönlendir
-                TempData["msj"] = "Bu sayfaya erişmek için önce müşteri olarak giriş yapmalısınız.";
+                TempData["msj"] = "Bu sayfaya erişmek için müşteri olarak giriş yapmalısınız.";
                 return RedirectToAction("MusteriLogin", "Musteri");
             }
+
             string musteriName = TempData["musteriName"] as string;
             TempData.Keep("musteriName");
             ViewBag.MusteriName = musteriName;
 
+            // Oturumdaki müşterinin randevularını getir
+            var musteriMail = HttpContext.User.Identity.Name;
+            var randevular = _context.Randevular
+                .Include(r => r.Calisan)
+                .Include(r => r.Islem)
+                .Where(r => r.Musteri.MusteriMail == musteriMail)
+                .ToList();
+
+            return View(randevular);
+        }
+
+
+        [HttpGet]
+        public IActionResult RandevuAl()
+        {
+            // Kuaför (Çalışan) verilerini doldur
             ViewBag.Calisanlar = _context.Calisanlar.Select(c => new SelectListItem
             {
                 Value = c.CalisanId.ToString(),
                 Text = c.CalisanAd
             }).ToList();
 
+            // İşlem verilerini doldur
             ViewBag.Islemler = _context.Islemler.Select(i => new SelectListItem
             {
                 Value = i.IslemId.ToString(),
                 Text = $"{i.IslemAdi} - {i.Ucret}₺ ({i.Sure} dk)"
             }).ToList();
 
-            ViewBag.Salonlar = _context.Salonlar.Select(s => new SelectListItem
-            {
-                Value = s.SalonId.ToString(),
-                Text = s.SalonAd + (s.doluluk ? " (Dolu)" : " (Boş)")
-            }).ToList();
-
-            return View(_context.Randevular.Include(r => r.Calisan).Include(r => r.Islem).Include(r => r.Salon).ToList());
+            return View();
         }
 
+
         [HttpPost]
-        public IActionResult RandevuAl(Randevu randevu)
+        public IActionResult RandevuAl(int islemId, DateTime tarih, string saat, int calisanId)
         {
-            if (!ModelState.IsValid) return RedirectToAction("MusteriDashboard");
+            var musteriId = HttpContext.Session.GetInt32("MusteriId");
+
+            if (musteriId == null)
+            {
+                TempData["msj"] = "Oturum bilgileriniz bulunamadı. Lütfen tekrar giriş yapınız.";
+                return RedirectToAction("MusteriLogin", "Musteri");
+            }
+
+            var mevcutRandevu = _context.Randevular
+                .FirstOrDefault(r => r.RandevuTarihi == tarih && r.RandevuSaati == saat && r.CalisanId == calisanId);
+
+            if (mevcutRandevu != null)
+            {
+                TempData["msj"] = "Seçilen saat diliminde başka bir randevu mevcut!";
+                return RedirectToAction("RandevuAl");
+            }
+
+            var randevu = new Randevu
+            {
+                RandevuTarihi = tarih,
+                RandevuSaati = saat,
+                IslemId = islemId,
+                CalisanId = calisanId,
+                MusteriId = musteriId.Value,
+                OnayDurumu = "Onaylanmadı" // Varsayılan değer olarak atanıyor
+            };
 
             _context.Randevular.Add(randevu);
             _context.SaveChanges();
@@ -62,6 +99,41 @@ namespace Coiffeur_Website.Controllers
             TempData["msj"] = "Randevunuz başarıyla oluşturuldu!";
             return RedirectToAction("MusteriDashboard");
         }
+
+
+        [HttpGet]
+        public IActionResult GetCalisanMusaitSaatler(int calisanId, DateTime tarih, int islemId)
+        {
+            var calisan = _context.Calisanlar.FirstOrDefault(c => c.CalisanId == calisanId);
+            if (calisan == null)
+            {
+                return Json(new { success = false, message = "Çalışan bulunamadı" });
+            }
+
+            var islem = _context.Islemler.FirstOrDefault(i => i.IslemId == islemId);
+            if (islem == null)
+            {
+                return Json(new { success = false, message = "İşlem bulunamadı" });
+            }
+
+            // Çalışma aralıklarını hesapla
+            var calismaAraliklari = calisan.GetCalismaAraliklari(islem.Sure);
+
+            // Seçilen tarihte dolu olan saat aralıklarını kontrol et
+            var doluSaatler = _context.Randevular
+                .Where(r => r.CalisanId == calisanId && r.RandevuTarihi.Date == tarih.Date)
+                .Select(r => new { r.RandevuSaati })
+                .ToList();
+
+            // Müsait saatleri hesapla
+            var musaitSaatler = calismaAraliklari
+                .Where(a => !doluSaatler.Any(d => d.RandevuSaati == a.Baslangic.ToString("HH:mm")))
+                .Select(a => new { Baslangic = a.Baslangic.ToString("HH:mm"), Bitis = a.Bitis.ToString("HH:mm") })
+                .ToList();
+
+            return Json(new { success = true, saatler = musaitSaatler });
+        }
+
 
         [HttpGet]
         public IActionResult KayitOl()
@@ -118,6 +190,9 @@ namespace Coiffeur_Website.Controllers
             TempData["musteriName"] = existingMusteri.MusteriAdi;
             return RedirectToAction("MusteriDashboard");
         }
+
+
+
 
         [HttpGet]
         public IActionResult GetCalisanlarBySalonId(int salonId)

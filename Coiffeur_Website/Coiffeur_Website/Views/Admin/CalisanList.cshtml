@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Coiffeur_Website.Models.Calisan>
+
+<div class="container">
+    <h2>Çalışan Listesi</h2>
+    <a asp-action="AddCalisan" class="btn btn-primary mb-3">Yeni Çalışan Ekle</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ad</th>
+                <th>Soyad</th>
+                <th>Uzmanlık Alanı</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var calisan in Model)
+            {
+                <tr>
+                    <td>@calisan.CalisanAd</td>
+                    <td>@calisan.CalisanSoyad</td>
+                    <td>@calisan.UzmanlikAlani</td>
+                    <td>
+                        <a asp-action="EditCalisan" asp-route-id="@calisan.CalisanId" class="btn btn-warning btn-sm">Düzenle</a>
+                        <form asp-action="DeleteCalisan" asp-route-id="@calisan.CalisanId" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

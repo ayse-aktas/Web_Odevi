@@ -16,12 +16,32 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Proje\web\Web_Odevi\Coiffeur_Website\Coiffeur_Website
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Admin/AddCalisan.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkQ2FsaXNhbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Admin/AdminLogin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5Mb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Admin/CalisanList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ2FsaXNhbkxpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Admin/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGFzaGJvYXJkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Admin/DeleteConfirmed.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGVsZXRlQ29uZmlybWVkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Admin/EditCalisan.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdENhbGlzYW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Admin/RandevuKontrol.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUmFuZGV2dUtvbnRyb2wuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Home/GirisSecenekleri.cshtml]
@@ -50,6 +70,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Musteri/MusteriLogin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVzdGVyaVxNdXN0ZXJpTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Musteri/RandevuAl.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVzdGVyaVxSYW5kZXZ1QWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Shared/Error.cshtml]

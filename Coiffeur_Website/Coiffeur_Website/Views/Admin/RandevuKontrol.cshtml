@@ -1,0 +1,36 @@
+﻿<table>
+    <thead>
+        <tr>
+            <th>Müşteri</th>
+            <th>İşlem</th>
+            <th>Kuaför</th>
+            <th>Tarih</th>
+            <th>Saat</th>
+            <th>Durum</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var randevu in ViewBag.Randevular)
+        {
+            <tr>
+                <td>@randevu.Musteri.MusteriAdi</td>
+                <td>@randevu.Islem.IslemAdi</td>
+                <td>@randevu.Calisan.CalisanAd</td>
+                <td>@randevu.RandevuTarihi.ToShortDateString()</td>
+                <td>@randevu.RandevuSaati</td>
+                <td>@(randevu.OnayDurumu ? "Onaylı" : "Beklemede")</td>
+                <td>
+                    <form asp-action="Onayla" method="post">
+                        <input type="hidden" name="id" value="@randevu.RandevuId" />
+                        <button type="submit">Onayla</button>
+                    </form>
+                    <form asp-action="Reddet" method="post">
+                        <input type="hidden" name="id" value="@randevu.RandevuId" />
+                        <button type="submit">Reddet</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

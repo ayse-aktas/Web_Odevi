@@ -2,98 +2,63 @@
 
 @{
     ViewData["Title"] = "Müşteri Dashboard";
-    var salonlar = ViewBag.Salonlar as IEnumerable<SelectListItem>;
 }
 
-<h2>Hoş Geldiniz, @ViewBag.MusteriName</h2>
-
-@if (TempData["msj"] != null)
-{
-    <div class="alert alert-success">
-        @TempData["msj"]
+<div class="container mt-5">
+    <div class="row justify-content-between align-items-center">
+        <div class="col-md-6">
+            <h2>Hoş Geldiniz, @ViewBag.MusteriName</h2>
+        </div>
+        <div class="col-md-4 text-end">
+            <a asp-controller="Musteri" asp-action="RandevuAl" class="btn btn-primary">Randevu Al</a>
+        </div>
     </div>
-}
+    <hr />
 
-<h3>Randevu Planlama</h3>
-<form asp-action="PlanRandevu" method="post">
-    <div class="form-group">
-        <label for="SalonId">Salon</label>
-        <select class="form-control" id="SalonId" name="SalonId" required>
-            <option value="">Lütfen bir salon seçin</option>
-            @if (salonlar != null)
-            {
-                @foreach (var salon in salonlar)
+    <h3>Güncel Randevularınız</h3>
+    @if (Model.Any())
+    {
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>Tarih ve Saat</th>
+                    <th>Salon</th>
+                    <th>Çalışan</th>
+                    <th>İşlem</th>
+                    <th>Durum</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var randevu in Model)
                 {
-                    <option value="@salon.Value">@salon.Text</option>
+                    <tr>
+                        <td>@randevu.RandevuTarihi.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>@randevu.Salon?.SalonAd</td>
+                        <td>@randevu.Calisan?.CalisanAd</td>
+                        <td>@randevu.Islem?.IslemAdi</td>,
+                        <td>
+                            @{
+                                if (randevu.OnayDurumu == "Beklemede")
+                                {
+                                    <p>"Beklemede"</p>
+                                }
+                                else if (randevu.OnayDurumu == "Onaylandı")
+                                {
+                                    <p>"Onaylandı"</p>
+                                }
+                                else if (randevu.OnayDurumu == "Onaylanmadı")
+                                {
+                                    <p>"Onaylanmadı"</p>
+                                }
+                            }
+                        </td>
+                    </tr>
                 }
-            }
-            else
-            {
-                <option value="">Salon bilgisi yüklenemedi</option>
-            }
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="CalisanId">Çalışan</label>
-        <select class="form-control" id="CalisanId" name="CalisanId" required>
-            <option value="">Önce bir salon seçin</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="IslemId">İşlem</label>
-        <select class="form-control" id="IslemId" name="IslemId" required>
-            <option value="">Önce bir çalışan seçin</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="RandevuTarihi">Uygun Tarih ve Saat</label>
-        <input type="datetime-local" class="form-control" id="RandevuTarihi" name="RandevuTarihi" required disabled />
-    </div>
-
-    <button type="submit" class="btn btn-primary mt-3">Planla</button>
-</form>
-
-
-@section Scripts {
-    <script>
-        $(document).ready(function () {
-            // Salon seçildiğinde çalışanları yükle
-            $('#SalonId').change(function () {
-                var salonId = $(this).val();
-                if (salonId) {
-                    $.getJSON('/Musteri/GetCalisanlarBySalonId', { salonId: salonId }, function (data) {
-                        $('#CalisanId').empty().append('<option value="">Lütfen bir çalışan seçin</option>');
-                        $.each(data, function (index, calisan) {
-                            $('#CalisanId').append('<option value="' + calisan.calisanId + '">' + calisan.calisanAd + '</option>');
-                        });
-                        $('#IslemId').empty().append('<option value="">Önce bir çalışan seçin</option>');
-                        $('#RandevuTarihi').prop('disabled', true).val('');
-                    });
-                }
-            });
-
-            // Çalışan seçildiğinde işlemleri ve uygun saatleri yükle
-            $('#CalisanId').change(function () {
-                var calisanId = $(this).val();
-                if (calisanId) {
-                    // İşlemleri yükle
-                    $.getJSON('/Musteri/GetIslemlerByCalisanId', { calisanId: calisanId }, function (data) {
-                        $('#IslemId').empty().append('<option value="">Lütfen bir işlem seçin</option>');
-                        $.each(data, function (index, islem) {
-                            $('#IslemId').append('<option value="' + islem.islemId + '">' + islem.islemAdi + ' - ' + islem.ucret + '₺ (' + islem.sure + ' dk)</option>');
-                        });
-                    });
-
-                    // Uygun saatleri yükle
-                    $.getJSON('/Musteri/GetCalisanAvailability', { calisanId: calisanId }, function (data) {
-                        $('#RandevuTarihi').prop('disabled', false);
-                        console.log(data); // Kullanıcıya uygun olmayan tarihleri göstermek için buradan ilerleyebilirsiniz
-                    });
-                }
-            });
-        });
-    </script>
-}
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-info mt-3">Henüz bir randevunuz bulunmuyor.</div>
+    }
+</div>

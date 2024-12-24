@@ -1,37 +1,41 @@
-﻿@model IEnumerable<Coiffeur_Website.Models.Randevu>
-
-<h2>Admin Dashboard</h2>
-
-@if (TempData["msj"] != null)
-{
-    <div class="alert alert-info">@TempData["msj"]</div>
-}
-
-<table class="table table-bordered">
+﻿<table class="table table-striped mt-3">
     <thead>
         <tr>
-            <th>Randevu Tarihi</th>
-            <th>İşlem</th>
+            <th>Tarih ve Saat</th>
+            <th>Salon</th>
             <th>Çalışan</th>
+            <th>İşlem</th>
             <th>Durum</th>
             <th>İşlemler</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var randevu in ViewBag.Randevular)
+        @foreach (var randevu in Model)
         {
             <tr>
-                <td>@randevu.RandevuTarihi</td>
-                <td>@randevu.IslemAdi</td>
-                <td>@randevu.CalisanAdi</td>
-                <td>@randevu.OnayDurumu ? "Onaylı" : "Onaysız"</td>
+                <td>@randevu.RandevuTarihi.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@randevu.Salon?.SalonAd</td>
+                <td>@randevu.Calisan?.CalisanAd</td>
+                <td>@randevu.Islem?.IslemAdi</td>
                 <td>
-                    <form method="post" asp-action="Onayla" asp-route-id="@randevu.RandevuId">
-                        <button type="submit" class="btn btn-success btn-sm">Onayla</button>
-                    </form>
-                    <form method="post" asp-action="Reddet" asp-route-id="@randevu.RandevuId">
-                        <button type="submit" class="btn btn-danger btn-sm">Reddet</button>
-                    </form>
+                    <span class="badge @((randevu.OnayDurumu == "Onaylandı" ? "badge-success" : randevu.OnayDurumu == "Beklemede" ? "badge-warning" : "badge-danger"))">
+                        @randevu.OnayDurumu
+                    </span>
+                </td>
+                <td>
+                    <div class="d-flex">
+                        <!-- Onayla Butonu -->
+                        <form asp-action="Onayla" method="post" class="mr-1">
+                            <input type="hidden" name="id" value="@randevu.RandevuId" />
+                            <button type="submit" class="btn btn-success btn-sm">Onayla</button>
+                        </form>
+
+                        <!-- Reddet Butonu -->
+                        <form asp-action="Reddet" method="post">
+                            <input type="hidden" name="id" value="@randevu.RandevuId" />
+                            <button type="submit" class="btn btn-danger btn-sm">Reddet</button>
+                        </form>
+                    </div>
                 </td>
             </tr>
         }
