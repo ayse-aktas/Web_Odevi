@@ -1,0 +1,66 @@
+﻿@model Coiffeur_Website.Models.Admin
+
+@{
+    ViewBag.Title = "Admin Panel";
+
+    var userRole = Context.Session.GetString("UserRole");
+    if (userRole != "Admin")
+    {
+        <script>
+            alert('Bu sayfaya yalnızca admin erişebilir!');
+            window.location.href = '/Admin/AdminLogin';
+        </script>
+    }
+}
+
+<div class="container mt-5">
+    <h2>Admin Panel</h2>
+    <hr />
+
+    <!-- Admin Bilgileri -->
+    <div class="card mb-4">
+        <div class="card-header">
+            Admin Bilgileri
+        </div>
+        <div class="card-body">
+            <p><strong>Adı:</strong> @Model.AdminAdi</p>
+            <p><strong>Soyadı:</strong> @Model.AdminSoyadi</p>
+            <p><strong>E-Posta:</strong> @Model.AdminMail</p>
+            <button class="btn btn-primary" id="updateButton">Bilgileri Güncelle</button>
+        </div>
+    </div>
+
+    <!-- Bilgileri Güncelleme Formu (Başlangıçta Gizli) -->
+    <div id="updateForm" class="card d-none">
+        <div class="card-header">
+            Bilgileri Güncelle
+        </div>
+        <div class="card-body">
+            <form method="post" asp-action="UpdateAdmin" asp-controller="Admin">
+                <input type="hidden" name="AdminId" value="@Model.AdminId" />
+                <div class="mb-3">
+                    <label for="AdminMail" class="form-label">Yeni E-Posta</label>
+                    <input type="email" class="form-control" id="AdminMail" name="AdminMail" value="@Model.AdminMail" required />
+                </div>
+                <div class="mb-3">
+                    <label for="Sifre" class="form-label">Yeni Şifre</label>
+                    <input type="password" class="form-control" id="Sifre" name="Sifre" required />
+                </div>
+                <button type="submit" class="btn btn-success">Kaydet</button>
+                <button type="button" class="btn btn-secondary" id="cancelButton">İptal</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('updateButton').addEventListener('click', function () {
+            document.getElementById('updateForm').classList.remove('d-none');
+        });
+
+        document.getElementById('cancelButton').addEventListener('click', function () {
+            document.getElementById('updateForm').classList.add('d-none');
+        });
+    </script>
+}

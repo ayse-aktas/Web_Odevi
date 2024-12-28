@@ -22,7 +22,8 @@ namespace Coiffeur_Website
         [HttpGet]
         public IActionResult GetAllIslem()
         {
-            var allIslem = dbContext.Islemler.ToList();
+            var allIslem = (from islem in dbContext.Islemler
+                            select islem).ToList();
             return Ok(allIslem);
         }
 
@@ -48,9 +49,11 @@ namespace Coiffeur_Website
         [Route("{id:int}")]
         public IActionResult GetIslemById(int id)
         {
-            var islem =dbContext.Islemler.Find(id);
-            
-            if(islem is null)
+            var islem = (from i in dbContext.Islemler
+                         where i.IslemId == id
+                         select i).FirstOrDefault();
+
+            if (islem is null)
             {
                 return NotFound();
             }
@@ -62,9 +65,11 @@ namespace Coiffeur_Website
         [Route("{id:int}")]
         public IActionResult UpdateIslem(int id, UpdateIslem updateIslem)
         {
-            var islem = dbContext.Islemler.Find(id);
+            var islem = (from i in dbContext.Islemler
+                         where i.IslemId == id
+                         select i).FirstOrDefault();
 
-            if(islem is null)
+            if (islem is null)
             {
                 return  NotFound();
             }

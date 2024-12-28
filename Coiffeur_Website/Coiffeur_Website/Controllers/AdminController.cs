@@ -15,6 +15,74 @@ namespace Coiffeur_Website.Controllers
             _context = context;
         }
 
+        public IActionResult AdminPanel()
+        {
+            // Kullanıcının rolünü kontrol et
+            var role = HttpContext.Session.GetString("UserRole");
+            if (role != "Admin")
+            {
+                TempData["msj"] = "Bu sayfaya erişmek için admin olarak giriş yapmalısınız.";
+                return RedirectToAction("AdminLogin");
+            }
+
+            // Oturumdan admin ID'sini alın
+            var adminId = HttpContext.Session.GetInt32("AdminId"); // Admin ID oturumdan alınır
+            if (adminId == null)
+            {
+                TempData["msj"] = "Admin oturumu bulunamadı. Lütfen tekrar giriş yapın.";
+                return RedirectToAction("AdminLogin");
+            }
+
+            // Veritabanından admin bilgilerini alın
+            var admin = _context.Adminler.FirstOrDefault(a => a.AdminId == adminId.Value);
+            if (admin == null)
+            {
+                TempData["msj"] = "Admin bilgileri bulunamadı.";
+                return RedirectToAction("AdminLogin");
+            }
+
+            // Admin bilgilerini görünüme gönderin
+            return View(admin);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateAdmin(Admin admin)
+        {
+            // Kullanıcının rolünü kontrol et
+            var role = HttpContext.Session.GetString("UserRole");
+            if (role != "Admin")
+            {
+                TempData["msj"] = "Bu işlemi gerçekleştirmek için admin olarak giriş yapmalısınız.";
+                return RedirectToAction("AdminLogin");
+            }
+
+            // Oturumdan AdminId al
+            var adminId = HttpContext.Session.GetInt32("AdminId");
+            if (adminId == null)
+            {
+                TempData["msj"] = "Oturum süresi dolmuş. Lütfen tekrar giriş yapın.";
+                return RedirectToAction("AdminLogin");
+            }
+
+            // Admin kaydını bul
+            var existingAdmin = _context.Adminler.FirstOrDefault(a => a.AdminId == adminId);
+            if (existingAdmin == null)
+            {
+                TempData["msj"] = "Admin bilgileri bulunamadı.";
+                return RedirectToAction("AdminPanel");
+            }
+
+            // Bilgileri güncelle
+            existingAdmin.AdminMail = admin.AdminMail;
+            existingAdmin.Sifre = admin.Sifre;
+
+            _context.SaveChanges();
+
+            TempData["msj"] = "Bilgiler başarıyla güncellendi!";
+            return RedirectToAction("AdminPanel");
+        }
+
+
         [HttpGet]
         public IActionResult AdminLogin()
         {
@@ -27,19 +95,24 @@ namespace Coiffeur_Website.Controllers
             if (!ModelState.IsValid)
                 return View();
 
+            // Veritabanında admini kontrol et
             var existingAdmin = _context.Adminler.FirstOrDefault(a => a.AdminMail == admin.AdminMail);
 
+            // Geçersiz e-posta veya şifre kontrolü
             if (existingAdmin == null || existingAdmin.Sifre != admin.Sifre)
             {
                 TempData["msj"] = "E-posta veya şifre hatalı!";
                 return View();
             }
 
-            // Admin olarak giriş yapan kullanıcıyı session'a kaydet
+            // Admin bilgilerini session'a kaydet
             HttpContext.Session.SetString("UserRole", "Admin");
-            TempData["adminName"] = existingAdmin.AdminAdi;
-            return RedirectToAction("Dashboard");
+            HttpContext.Session.SetInt32("AdminId", existingAdmin.AdminId); // Admin ID oturumda saklanıyor
+            TempData["adminName"] = existingAdmin.AdminAdi; // Hoş geldiniz mesajı için kullanılabilir
+
+            return RedirectToAction("AdminPanel"); // Başarılı giriş sonrası Dashboard'a yönlendirme
         }
+
 
         [HttpGet]
         public IActionResult Dashboard()
@@ -378,9 +451,7 @@ namespace Coiffeur_Website.Controllers
         }
 
 
-
-
-
+        
     }
 }
 
