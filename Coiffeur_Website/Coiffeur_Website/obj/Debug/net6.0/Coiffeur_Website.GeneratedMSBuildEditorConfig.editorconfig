@@ -20,6 +20,10 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkQ2FsaXNhbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Admin/AddIslem.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkSXNsZW0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Admin/AdminLogin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5Mb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -40,6 +44,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdENhbGlzYW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Admin/EditIslem.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdElzbGVtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Admin/IslemList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSXNsZW1MaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Admin/RandevuKontrol.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUmFuZGV2dUtvbnRyb2wuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -54,6 +66,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Home/Servisler.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZXJ2aXNsZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Proje/web/Web_Odevi/Coiffeur_Website/Coiffeur_Website/Views/Musteri/Index.cshtml]

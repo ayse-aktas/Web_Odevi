@@ -56,7 +56,6 @@ namespace Coiffeur_Website.Controllers
             var randevular = _context.Randevular
                 .Include(r => r.Calisan)
                 .Include(r => r.Islem)
-                .Include(r => r.Islem.Salon)
                 .ToList();
 
             ViewBag.Randevular = randevular.Select(r => new
@@ -280,6 +279,108 @@ namespace Coiffeur_Website.Controllers
             TempData["msj"] = "Çalışan başarıyla silindi!";
             return RedirectToAction("CalisanList");
         }
+
+
+        //---------------------Islem Controlleri----------------
+
+        [HttpGet]
+        public IActionResult IslemList()
+        {
+            // Admin kontrolü
+            var role = HttpContext.Session.GetString("UserRole");
+            if (role != "Admin")
+            {
+                TempData["msj"] = "Bu sayfaya erişmek için admin olarak giriş yapmalısınız.";
+                return RedirectToAction("AdminLogin");
+            }
+
+            var islemler = _context.Islemler.ToList();
+            return View(islemler);
+        }
+
+        [HttpGet]
+        public IActionResult AddIslem()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddIslem(Islem islem)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["msj"] = "Lütfen tüm alanları doldurun.";
+                return View(islem);
+            }
+
+            _context.Islemler.Add(islem);
+            _context.SaveChanges();
+
+            TempData["msj"] = "İşlem başarıyla eklendi!";
+            return RedirectToAction("IslemList");
+        }
+
+        [HttpGet]
+        public IActionResult EditIslem(int id)
+        {
+            var islem = _context.Islemler.FirstOrDefault(i => i.IslemId == id);
+            if (islem == null)
+            {
+                TempData["msj"] = "İşlem bulunamadı.";
+                return RedirectToAction("IslemList");
+            }
+
+            return View(islem);
+        }
+
+        [HttpPost]
+        public IActionResult EditIslem(Islem islem)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["msj"] = "Lütfen tüm alanları doldurunuz.";
+                return View(islem);
+            }
+
+            var existingIslem = _context.Islemler.FirstOrDefault(i => i.IslemId == islem.IslemId);
+            if (existingIslem == null)
+            {
+                TempData["msj"] = "İşlem bulunamadı.";
+                return RedirectToAction("IslemList");
+            }
+
+            existingIslem.IslemAdi = islem.IslemAdi;
+            existingIslem.Sure = islem.Sure;
+            existingIslem.Ucret = islem.Ucret;
+
+            _context.SaveChanges();
+
+            TempData["msj"] = "İşlem başarıyla güncellendi!";
+            return RedirectToAction("IslemList");
+        }
+
+
+        [HttpPost]
+        public IActionResult DeleteIslem(int id)
+        {
+            var islem = _context.Islemler.FirstOrDefault(i => i.IslemId == id);
+            if (islem == null)
+            {
+                TempData["msj"] = "İşlem bulunamadı.";
+                return RedirectToAction("IslemList");
+            }
+
+            _context.Islemler.Remove(islem);
+            _context.SaveChanges();
+
+            TempData["msj"] = "İşlem başarıyla silindi!";
+            return RedirectToAction("IslemList");
+        }
+
+
+
+
+
     }
 }
 

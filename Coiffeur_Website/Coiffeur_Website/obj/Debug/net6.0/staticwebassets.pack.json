@@ -13,6 +13,78 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\Proje\\web\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\wwwroot\\img\\Salon-2.jpg",
+      "PackagePath": "staticwebassets\\img\\Salon-2.jpg"
+    },
+    {
+      "Id": "D:\\Proje\\web\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\wwwroot\\img\\anaresim.jpg",
+      "PackagePath": "staticwebassets\\img\\anaresim.jpg"
+    },
+    {
+      "Id": "D:\\Proje\\web\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\wwwroot\\img\\anaresim2.jpg",
+      "PackagePath": "staticwebassets\\img\\anaresim2.jpg"
+    },
+    {
+      "Id": "D:\\Proje\\web\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\wwwroot\\img\\hizmetler.jpg",
+      "PackagePath": "staticwebassets\\img\\hizmetler.jpg"
+    },
+    {
+      "Id": "D:\\Proje\\web\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\wwwroot\\img\\hizmetler2.jpg",
+      "PackagePath": "staticwebassets\\img\\hizmetler2.jpg"
+    },
+    {
+      "Id": "D:\\Proje\\web\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\wwwroot\\img\\hizmetler3.jpg",
+      "PackagePath": "staticwebassets\\img\\hizmetler3.jpg"
+    },
+    {
+      "Id": "D:\\Proje\\web\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\wwwroot\\img\\kuafor.png",
+      "PackagePath": "staticwebassets\\img\\kuafor.png"
+    },
+    {
+      "Id": "D:\\Proje\\web\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\wwwroot\\img\\makeup.jpg",
+      "PackagePath": "staticwebassets\\img\\makeup.jpg"
+    },
+    {
+      "Id": "D:\\Proje\\web\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\wwwroot\\img\\manikur.jpg",
+      "PackagePath": "staticwebassets\\img\\manikur.jpg"
+    },
+    {
+      "Id": "D:\\Proje\\web\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\wwwroot\\img\\pedikür.jpg",
+      "PackagePath": "staticwebassets\\img\\pedikür.jpg"
+    },
+    {
+      "Id": "D:\\Proje\\web\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\wwwroot\\img\\sacbakim.jpg",
+      "PackagePath": "staticwebassets\\img\\sacbakim.jpg"
+    },
+    {
+      "Id": "D:\\Proje\\web\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\wwwroot\\img\\sacboyama.jpg",
+      "PackagePath": "staticwebassets\\img\\sacboyama.jpg"
+    },
+    {
+      "Id": "D:\\Proje\\web\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\wwwroot\\img\\sackesim.jpg",
+      "PackagePath": "staticwebassets\\img\\sackesim.jpg"
+    },
+    {
+      "Id": "D:\\Proje\\web\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\wwwroot\\img\\sacsekillendirme.jpg",
+      "PackagePath": "staticwebassets\\img\\sacsekillendirme.jpg"
+    },
+    {
+      "Id": "D:\\Proje\\web\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\wwwroot\\img\\salon-1.jpg",
+      "PackagePath": "staticwebassets\\img\\salon-1.jpg"
+    },
+    {
+      "Id": "D:\\Proje\\web\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\wwwroot\\img\\salon-3.jpg",
+      "PackagePath": "staticwebassets\\img\\salon-3.jpg"
+    },
+    {
+      "Id": "D:\\Proje\\web\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\wwwroot\\img\\salon-4.jpg",
+      "PackagePath": "staticwebassets\\img\\salon-4.jpg"
+    },
+    {
+      "Id": "D:\\Proje\\web\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\wwwroot\\img\\wedding.jpg",
+      "PackagePath": "staticwebassets\\img\\wedding.jpg"
+    },
+    {
       "Id": "D:\\Proje\\web\\Web_Odevi\\Coiffeur_Website\\Coiffeur_Website\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Coiffeur_Website.Models.Islem>
+
+<h2>İşlem Listesi</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>İşlem Adı</th>
+            <th>Süre (dk)</th>
+            <th>Ücret (₺)</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var islem in Model)
+        {
+            <tr>
+                <td>@islem.IslemId</td>
+                <td>@islem.IslemAdi</td>
+                <td>@islem.Sure</td>
+                <td>@islem.Ucret</td>
+                <td>
+                    <a href="@Url.Action("EditIslem", "Admin", new { id = islem.IslemId })" class="btn btn-warning">Düzenle</a>
+                    <form action="@Url.Action("DeleteIslem", "Admin", new { id = islem.IslemId })" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Bu işlemi silmek istediğinizden emin misiniz?')">Sil</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="@Url.Action("AddIslem", "Admin")" class="btn btn-primary">Yeni İşlem Ekle</a>

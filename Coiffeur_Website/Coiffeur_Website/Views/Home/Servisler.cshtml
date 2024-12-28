@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services - Coiffeur_Website</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .services-header {
+            text-align: center;
+            color: white;
+            padding: 50px 0;
+            background-image: url('/img/hizmetler3.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .service-card img {
+            height: 200px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="services-header">
+        <h1>Hizmetlerimiz</h1>
+        <p>Profesyonel hizmetlerimizle güzelliğinizi ön plana çıkarın.</p>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card service-card">
+                    <img src="~/img/sacsekillendirme.jpg" class="card-img-top" alt="Haircut">
+                    <div class="card-body">
+                        <h5 class="card-title">Saç Kesimi</h5>
+                        <p class="card-text">Modern ve klasik saç kesimleriyle tarzınızı yenileyin.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card service-card">
+                    <img src="~/img/sacboyama.jpg" class="card-img-top" alt="Hair Coloring">
+                    <div class="card-body">
+                        <h5 class="card-title">Saç Renklendirme</h5>
+                        <p class="card-text">En yeni renk teknikleriyle saçınıza canlılık katın.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card service-card">
+                    <img src="~/img/wedding.jpg" class="card-img-top" alt="Styling">
+                    <div class="card-body">
+                        <h5 class="card-title">Saç Şekillendirme</h5>
+                        <p class="card-text">Düğün, nişan veya özel günler için şık saç modelleri.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card service-card">
+                    <img src="~/img/manikur.jpg" class="card-img-top" alt="Manicure">
+                    <div class="card-body">
+                        <h5 class="card-title">Manikür</h5>
+                        <p class="card-text">Ellerinize özen gösterin, güzelliğinizi tamamlayın.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card service-card">
+                    <img src="~/img/pedikür.jpg" class="card-img-top" alt="Pedicure">
+                    <div class="card-body">
+                        <h5 class="card-title">Pedikür</h5>
+                        <p class="card-text">Ayaklarınızın bakımını ihmal etmeyin.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card service-card">
+                    <img src="~/img/makeup.jpg" class="card-img-top" alt="Makeup">
+                    <div class="card-body">
+                        <h5 class="card-title">Makyaj</h5>
+                        <p class="card-text">Profesyonel makyaj hizmetimizle ışıltınızı artırın.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

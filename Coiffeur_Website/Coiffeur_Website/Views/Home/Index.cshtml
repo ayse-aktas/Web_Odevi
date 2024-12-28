@@ -5,12 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home - Coiffeur_Website</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .hero-section {
+            position: relative;
+            text-align: center;
+            color: white;
+            height: 100vh;
+            background-image: url('/img/anaresim.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+            .hero-content h1 {
+                font-size: 3rem;
+                font-weight: bold;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+                margin: 20px 0;
+            }
+
+            .hero-content .btn {
+                margin-top: 10px;
+            }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+            footer a {
+                color: #ffc107;
+                text-decoration: none;
+            }
+
+                footer a:hover {
+                    text-decoration: underline;
+                }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Hoş Geldiniz</h1>
-        <p>Kuaför randevu sistemimize hoş geldiniz.</p>
+    <div class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content container">
+            <h1>Hoş Geldiniz</h1>
+            <p>Kuaför randevu sistemimize hoş geldiniz. Tarzınıza en uygun çözümleri sunuyoruz.</p>
+            <a href="/appointment" class="btn btn-primary btn-lg">Randevu Al</a>
+            <a href="/Home/Servisler" class="btn btn-outline-light btn-lg">Hizmetlerimizi İnceleyin</a>
+        </div>
     </div>
+
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

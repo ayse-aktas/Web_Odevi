@@ -7,7 +7,5 @@
         public int Sure { get; set; } // Dakika cinsinden işlem süresi
         public int Ucret { get; set; } // İşlem ücreti
 
-        // Navigasyon özelliği
-        public Salon Salon { get; set; }
     }
 }

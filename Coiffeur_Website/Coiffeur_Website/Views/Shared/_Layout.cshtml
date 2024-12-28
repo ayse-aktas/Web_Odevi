@@ -7,12 +7,69 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Coiffeur_Website.styles.css" asp-append-version="true" />
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .navbar {
+            background-color: #343a40; /* Footer rengini navbar yap */
+        }
+
+        .navbar-brand img {
+            height: 40px;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff !important;
+            margin-right: 15px;
+            font-size: 1.1rem;
+        }
+
+            .navbar-nav .nav-link:hover {
+                color: #ffc107 !important; /* Mouse ile üzerine gidildiğinde renk değişimi */
+            }
+
+        .navbar-toggler {
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: auto; /* Footer'ı en alta sabitle */
+        }
+
+            footer a {
+                color: #ffc107;
+                text-decoration: none;
+            }
+
+                footer a:hover {
+                    text-decoration: underline;
+                }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Coiffeur_Website</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="/img/kuafor.png" alt="Coiffeur Logo">
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -21,7 +78,7 @@
                     <!-- Sol Menü -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
                         </li>
                         @if (!string.IsNullOrEmpty(ViewContext.HttpContext.Session.GetString("UserRole")))
                         {
@@ -29,16 +86,19 @@
                             if (role == "Musteri")
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Musteri" asp-action="MusteriDashboard">Müşteri Dashboard</a>
+                                    <a class="nav-link" asp-area="" asp-controller="Musteri" asp-action="MusteriDashboard">Müşteri Dashboard</a>
                                 </li>
                             }
                             else if (role == "Admin")
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Dashboard">Admin Dashboard</a>
+                                    <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="Dashboard">Admin Dashboard</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="CalisanList">Çalışan Bilgileri</a>
+                                    <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="CalisanList">Çalışan Bilgileri</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="IslemList">İşlem Yönetimi</a>
                                 </li>
                             }
                         }
@@ -49,16 +109,16 @@
                         {
                             var role = ViewContext.HttpContext.Session.GetString("UserRole");
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="@role" asp-action="Logout">Çıkış Yap</a>
+                                <a class="nav-link" asp-area="" asp-controller="@role" asp-action="Logout">Çıkış Yap</a>
                             </li>
                         }
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Home" asp-action="GirisSecenekleri">Giriş Yap</a>
+                                <a class="nav-link" asp-controller="Home" asp-action="GirisSecenekleri">Giriş Yap</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Musteri" asp-action="KayitOl">Kayıt Ol</a>
+                                <a class="nav-link" asp-controller="Musteri" asp-action="KayitOl">Kayıt Ol</a>
                             </li>
                         }
                     </ul>
@@ -73,7 +133,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer>
         <div class="container text-center py-3">
             &copy; 2024 - Coiffeur_Website - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>

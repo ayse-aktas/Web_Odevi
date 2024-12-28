@@ -17,6 +17,10 @@ namespace Coiffeur_Website.Controllers
         {
             return View();
         }
+        public IActionResult Servisler()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {

@@ -106,7 +106,7 @@ namespace Coiffeur_Website.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SalonId")
+                    b.Property<int?>("SalonId")
                         .HasColumnType("int");
 
                     b.Property<int>("Sure")
@@ -211,7 +211,7 @@ namespace Coiffeur_Website.Migrations
                     b.Property<bool>("doluluk")
                         .HasColumnType("bit");
 
-                    b.Property<int>("dolulukSuresi")
+                    b.Property<int?>("dolulukSuresi")
                         .HasColumnType("int");
 
                     b.HasKey("SalonId");
@@ -230,13 +230,9 @@ namespace Coiffeur_Website.Migrations
 
             modelBuilder.Entity("Coiffeur_Website.Models.Islem", b =>
                 {
-                    b.HasOne("Coiffeur_Website.Models.Salon", "Salon")
+                    b.HasOne("Coiffeur_Website.Models.Salon", null)
                         .WithMany("Islemler")
-                        .HasForeignKey("SalonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Salon");
+                        .HasForeignKey("SalonId");
                 });
 
             modelBuilder.Entity("Coiffeur_Website.Models.Randevu", b =>
